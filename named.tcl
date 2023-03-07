@@ -1,3 +1,5 @@
+#!/usr/bin/tclsh
+
 #
 # Named arguments
 #
