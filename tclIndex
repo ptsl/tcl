@@ -7,5 +7,6 @@
 # a script that loads the command.
 
 set auto_index(decr) [list source [file join $dir decr.tcl]]
+set auto_index(lprint) [list source [file join $dir lutils.tcl]]
 set auto_index(named) [list source [file join $dir named.tcl]]
 set auto_index(showerror) [list source [file join $dir showerror.tcl]]
