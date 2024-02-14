@@ -8,3 +8,4 @@
 
 set auto_index(decr) [list source [file join $dir decr.tcl]]
 set auto_index(named) [list source [file join $dir named.tcl]]
+set auto_index(showerror) [list source [file join $dir showerror.tcl]]
