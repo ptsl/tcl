@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 namespace eval slurp {
-    namespace export read readlines
+    namespace export read readlines write
     namespace ensemble create
 
     #
@@ -33,6 +33,22 @@ namespace eval slurp {
         try {
             # Use ::read to prevent recursion.
             return [split [::read -nonewline $fp] \n]
+        } finally {
+            close $fp
+        }
+    }
+
+    #
+    # Write a whole file.
+    #
+    # Usage:
+    #
+    #   slurp write /path/file "File content"
+    #
+    proc write {path text} {
+        set fp [open $path w]
+        try {
+            puts -nonewline $fp $text
         } finally {
             close $fp
         }
