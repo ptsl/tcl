@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 namespace eval slurp {
-    namespace export read readlines write
+    namespace export read readlines write writelines
     namespace ensemble create
 
     #
@@ -51,6 +51,24 @@ namespace eval slurp {
         set fp [open $path w]
         try {
             puts -nonewline $fp $text
+        } finally {
+            close $fp
+        }
+    }
+
+    #
+    # Write a list of lines to a file.
+    #
+    # Usage:
+    #
+    #   slurp writelines /path/file {{Line 1} {Line 2} {Line 3}}
+    #
+    proc writelines {path lines} {
+        set fp [open $path w]
+        try {
+            foreach line $lines {
+                puts $fp $line
+            }
         } finally {
             close $fp
         }
