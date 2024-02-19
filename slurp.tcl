@@ -50,6 +50,7 @@ namespace eval slurp {
     proc write {path text} {
         set fp [open $path w]
         try {
+            # The final newline is written only if 'text' contains it.
             puts -nonewline $fp $text
         } finally {
             close $fp
