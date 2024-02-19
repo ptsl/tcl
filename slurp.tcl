@@ -22,11 +22,13 @@ namespace eval slurp {
     }
 
     #
-    # Read a whole file and return it as an array of lines.
+    # Read a whole file and return it as a list of lines.
     #
     # Usage:
     #
     #   set lines [slurp readlines /path/file]
+    #
+    # The newline characters are discarded.
     #
     proc readlines {path} {
         set fp [open $path r]
