@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 namespace eval slurp {
-    namespace export read readlines write writelines
+    namespace export read readlines write writelines edit
     namespace ensemble create
 
     #
@@ -72,6 +72,24 @@ namespace eval slurp {
             }
         } finally {
             close $fp
+        }
+    }
+
+    #
+    # Edit a file using a regular expression.
+    #
+    # Usage:
+    #
+    #   slurp edit /path/file aaa bbb
+    #
+    # The file remains unchanged if the pattern does not match.
+    # The pattern is matched against the string in multi-line mode (-line).
+    # All found matches are replaced (-all).
+    # Matching occurs in case-sensitive mode.
+    #
+    proc edit {path pattern repl} {
+        if {[regsub -all -line -- $pattern [read $path] $repl result]} {
+            write $path $result
         }
     }
 }
