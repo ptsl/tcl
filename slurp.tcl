@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 namespace eval slurp {
-    namespace export read readlines write writelines edit
+    namespace export read readlines write writelines edit editlines
     namespace ensemble create
 
     #
@@ -90,6 +90,36 @@ namespace eval slurp {
     proc edit {path pattern repl} {
         if {[regsub -all -line -- $pattern [read $path] $repl result]} {
             write $path $result
+        }
+    }
+
+    #
+    # Modify a file by applying a regular expression to each line individually.
+    #
+    # Usage:
+    #
+    #   slurp editlines /path/file aaa bbb
+    #
+    # Multi-line patterns are intentionally not functional.
+    #
+    proc editlines {path pattern repl} {
+        set lines [readlines $path]
+
+        set result {}
+        set count 0
+
+        foreach line $lines {
+            # The newLine variable is still assigned, even if the regexp does not match.
+            if {[regsub -all -- $pattern $line $repl newLine]} {
+                incr count
+            }
+
+            lappend result $newLine
+        }
+
+
+        if {$count > 0} {
+            writelines $path $result
         }
     }
 }
