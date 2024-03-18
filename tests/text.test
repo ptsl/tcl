@@ -1,0 +1,63 @@
+#!/usr/bin/tclsh
+
+package require tcltest
+namespace import ::tcltest::*
+
+#
+# Test cases:
+#
+#   text splitlines aaa\nbbb\nccc\n -> {aaa bbb ccc} (removed {})
+#   text splitlines aaa\nbbb\nccc   -> {aaa bbb ccc}
+#   text splitlines aaa\nbbb\n      -> {aaa bbb}     (removed {})
+#   text splitlines aaa\nbbb        -> {aaa bbb}
+#   text splitlines aaa\n           -> {aaa}         (removed {})
+#   text splitlines aaa             -> {aaa}
+#   text splitlines \n\n\n          -> {{} {} {}}    (removed {})
+#   text splitlines \n\n            -> {{} {}}       (removed {})
+#   text splitlines \n              -> {{}}          (removed {})
+#   text splitlines {}              -> {}
+#
+
+test splitlines-1.1 {three complete lines} {
+    text splitlines aaa\nbbb\nccc\n
+} {aaa bbb ccc}
+
+test splitlines-1.2 {two complete lines} {
+    text splitlines aaa\nbbb\n
+} {aaa bbb}
+
+test splitlines-1.3 {one complete line} {
+    text splitlines aaa\n
+} {aaa}
+
+test splitlines-2.1 {two complete lines, one incomplete} {
+    text splitlines aaa\nbbb\nccc
+} {aaa bbb ccc}
+
+test splitlines-2.2 {one complete line, one incomplete} {
+    text splitlines aaa\nbbb
+} {aaa bbb}
+
+test splitlines-2.3 {one icomplete line} {
+    text splitlines aaa
+} {aaa}
+
+test splitlines-3.1 {three empty lines} {
+    text splitlines \n\n\n
+} {{} {} {}}
+
+test splitlines-3.2 {two empty lines} {
+    text splitlines \n\n
+} {{} {}}
+
+test splitlines-3.3 {one empty line} {
+    text splitlines \n
+} {{}}
+
+test splitlines-4.1 {empty string} {
+    text splitlines {}
+} {}
+
+cleanupTests
+
+# vim: ft=tcl
