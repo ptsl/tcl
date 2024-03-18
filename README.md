@@ -1,3 +1,1 @@
-# tcl
-
-Tcl utils
+# A library of TCL functions and modules
