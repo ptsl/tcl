@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 namespace eval text {
-    namespace export splitlines
+    namespace export splitlines startswith
     namespace ensemble create
 
     #
@@ -20,5 +20,17 @@ namespace eval text {
         }
 
         return $lines
+    }
+
+    #
+    # Return 1 if the string starts with the given prefix; otherwise, return 0.
+    #
+    # Usage:
+    #
+    #   text startswith abcdefgh abcd
+    #
+    proc startswith {text prefix} {
+        set length [string length $prefix]
+        return [string equal -length $length $text $prefix]
     }
 }
