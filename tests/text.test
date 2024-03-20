@@ -58,6 +58,67 @@ test splitlines-4.1 {empty string} {
     text splitlines {}
 } {}
 
+
+test startswith-1.1 {shorter prefix, eight letters} {
+    text startswith abcdefgh abcd
+} 1
+
+test startswith-1.2 {shorter prefix, two letters} {
+    text startswith ab a
+} 1
+
+test startswith-1.3 {empty prefix} {
+    text startswith a {}
+} 1
+
+test startswith-2.1 {non-matching shorter prefix, eight letters} {
+    text startswith abcdefgh ijkl
+} 0
+
+test startswith-2.2 {non-matching shorter prefix, two letters} {
+    text startswith ab c
+} 0
+
+test startswith-3.1 {longer prefix, eight letters} {
+    text startswith abcd abcdefgh
+} 0
+
+test startswith-3.2 {longer prefix, two letters} {
+    text startswith a ab
+} 0
+
+test startswith-3.3 {longer prefix, empty text} {
+    text startswith {} a
+} 0
+
+test startswith-4.1 {equal strings, eight letters} {
+    text startswith abcdefgh abcdefgh
+} 1
+
+test startswith-4.2 {equal strings, two letters} {
+    text startswith ab ab
+} 1
+
+test startswith-4.3 {equal strings, one letter} {
+    text startswith a a
+} 1
+
+test startswith-4.4 {two empty strings} {
+    text startswith {} {}
+} 1
+
+test startswith-5.1 {different strings of the same length, eight letters} {
+    text startswith abcdefgh ijklmnop
+} 0
+
+test startswith-5.2 {different strings of the same length, two letters} {
+    text startswith ab cd
+} 0
+
+test startswith-5.3 {different strings of the same length, one letter} {
+    text startswith a b
+} 0
+
 cleanupTests
 
 # vim: ft=tcl
