@@ -1,27 +1,27 @@
 #!/usr/bin/tclsh
 
-namespace eval text {
+namespace eval strlib {
     namespace export splitlines startswith
     namespace ensemble create
 
     #
-    # Split the text into lines.
+    # Split text into lines.
     #
     # If the text ends with '\n', the last element is removed from the result to ensure
     # that the function does not produce an empty string after the last line.
     #
     # Examples:
     #
-    #   text splitlines aaa\nbbb\nccc\n -> {aaa bbb ccc}
-    #   text splitlines aaa\nbbb\nccc   -> {aaa bbb ccc}
-    #   text splitlines aaa\nbbb\n      -> {aaa bbb}
-    #   text splitlines aaa\nbbb        -> {aaa bbb}
-    #   text splitlines aaa\n           -> {aaa}
-    #   text splitlines aaa             -> {aaa}
-    #   text splitlines \n\n\n          -> {{} {} {}}
-    #   text splitlines \n\n            -> {{} {}}
-    #   text splitlines \n              -> {{}}
-    #   text splitlines {}              -> {}
+    #   strlib splitlines aaa\nbbb\nccc\n -> {aaa bbb ccc}
+    #   strlib splitlines aaa\nbbb\nccc   -> {aaa bbb ccc}
+    #   strlib splitlines aaa\nbbb\n      -> {aaa bbb}
+    #   strlib splitlines aaa\nbbb        -> {aaa bbb}
+    #   strlib splitlines aaa\n           -> {aaa}
+    #   strlib splitlines aaa             -> {aaa}
+    #   strlib splitlines \n\n\n          -> {{} {} {}}
+    #   strlib splitlines \n\n            -> {{} {}}
+    #   strlib splitlines \n              -> {{}}
+    #   strlib splitlines {}              -> {}
     #
     proc splitlines {text} {
         set lines [split $text \n]
@@ -38,7 +38,7 @@ namespace eval text {
     #
     # Usage:
     #
-    #   text startswith abcdefgh abcd
+    #   strlib startswith abcdefgh abcd
     #
     proc startswith {text prefix} {
         set length [string length $prefix]
