@@ -3,21 +3,6 @@
 package require tcltest
 namespace import ::tcltest::*
 
-#
-# Test cases:
-#
-#   text splitlines aaa\nbbb\nccc\n -> {aaa bbb ccc} (removed {})
-#   text splitlines aaa\nbbb\nccc   -> {aaa bbb ccc}
-#   text splitlines aaa\nbbb\n      -> {aaa bbb}     (removed {})
-#   text splitlines aaa\nbbb        -> {aaa bbb}
-#   text splitlines aaa\n           -> {aaa}         (removed {})
-#   text splitlines aaa             -> {aaa}
-#   text splitlines \n\n\n          -> {{} {} {}}    (removed {})
-#   text splitlines \n\n            -> {{} {}}       (removed {})
-#   text splitlines \n              -> {{}}          (removed {})
-#   text splitlines {}              -> {}
-#
-
 test splitlines-1.1 {three complete lines} {
     text splitlines aaa\nbbb\nccc\n
 } {aaa bbb ccc}
