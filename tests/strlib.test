@@ -4,104 +4,104 @@ package require tcltest
 namespace import ::tcltest::*
 
 test splitlines-1.1 {three complete lines} {
-    text splitlines aaa\nbbb\nccc\n
+    strlib splitlines aaa\nbbb\nccc\n
 } {aaa bbb ccc}
 
 test splitlines-1.2 {two complete lines} {
-    text splitlines aaa\nbbb\n
+    strlib splitlines aaa\nbbb\n
 } {aaa bbb}
 
 test splitlines-1.3 {one complete line} {
-    text splitlines aaa\n
+    strlib splitlines aaa\n
 } {aaa}
 
 test splitlines-2.1 {two complete lines, one incomplete} {
-    text splitlines aaa\nbbb\nccc
+    strlib splitlines aaa\nbbb\nccc
 } {aaa bbb ccc}
 
 test splitlines-2.2 {one complete line, one incomplete} {
-    text splitlines aaa\nbbb
+    strlib splitlines aaa\nbbb
 } {aaa bbb}
 
 test splitlines-2.3 {one icomplete line} {
-    text splitlines aaa
+    strlib splitlines aaa
 } {aaa}
 
 test splitlines-3.1 {three empty lines} {
-    text splitlines \n\n\n
+    strlib splitlines \n\n\n
 } {{} {} {}}
 
 test splitlines-3.2 {two empty lines} {
-    text splitlines \n\n
+    strlib splitlines \n\n
 } {{} {}}
 
 test splitlines-3.3 {one empty line} {
-    text splitlines \n
+    strlib splitlines \n
 } {{}}
 
 test splitlines-4.1 {empty string} {
-    text splitlines {}
+    strlib splitlines {}
 } {}
 
 
 test startswith-1.1 {shorter prefix, eight letters} {
-    text startswith abcdefgh abcd
+    strlib startswith abcdefgh abcd
 } 1
 
 test startswith-1.2 {shorter prefix, two letters} {
-    text startswith ab a
+    strlib startswith ab a
 } 1
 
 test startswith-1.3 {empty prefix} {
-    text startswith a {}
+    strlib startswith a {}
 } 1
 
 test startswith-2.1 {non-matching shorter prefix, eight letters} {
-    text startswith abcdefgh ijkl
+    strlib startswith abcdefgh ijkl
 } 0
 
 test startswith-2.2 {non-matching shorter prefix, two letters} {
-    text startswith ab c
+    strlib startswith ab c
 } 0
 
 test startswith-3.1 {longer prefix, eight letters} {
-    text startswith abcd abcdefgh
+    strlib startswith abcd abcdefgh
 } 0
 
 test startswith-3.2 {longer prefix, two letters} {
-    text startswith a ab
+    strlib startswith a ab
 } 0
 
-test startswith-3.3 {longer prefix, empty text} {
-    text startswith {} a
+test startswith-3.3 {longer prefix, empty string} {
+    strlib startswith {} a
 } 0
 
 test startswith-4.1 {equal strings, eight letters} {
-    text startswith abcdefgh abcdefgh
+    strlib startswith abcdefgh abcdefgh
 } 1
 
 test startswith-4.2 {equal strings, two letters} {
-    text startswith ab ab
+    strlib startswith ab ab
 } 1
 
 test startswith-4.3 {equal strings, one letter} {
-    text startswith a a
+    strlib startswith a a
 } 1
 
 test startswith-4.4 {two empty strings} {
-    text startswith {} {}
+    strlib startswith {} {}
 } 1
 
 test startswith-5.1 {different strings of the same length, eight letters} {
-    text startswith abcdefgh ijklmnop
+    strlib startswith abcdefgh ijklmnop
 } 0
 
 test startswith-5.2 {different strings of the same length, two letters} {
-    text startswith ab cd
+    strlib startswith ab cd
 } 0
 
 test startswith-5.3 {different strings of the same length, one letter} {
-    text startswith a b
+    strlib startswith a b
 } 0
 
 cleanupTests
