@@ -10,7 +10,18 @@ namespace eval text {
     # If the text ends with '\n', the last element is removed from the result to ensure
     # that the function does not produce an empty string after the last line.
     #
-    # Refer to text.test (Test cases) for a more detailed description of the behavior.
+    # Examples:
+    #
+    #   text splitlines aaa\nbbb\nccc\n -> {aaa bbb ccc}
+    #   text splitlines aaa\nbbb\nccc   -> {aaa bbb ccc}
+    #   text splitlines aaa\nbbb\n      -> {aaa bbb}
+    #   text splitlines aaa\nbbb        -> {aaa bbb}
+    #   text splitlines aaa\n           -> {aaa}
+    #   text splitlines aaa             -> {aaa}
+    #   text splitlines \n\n\n          -> {{} {} {}}
+    #   text splitlines \n\n            -> {{} {}}
+    #   text splitlines \n              -> {{}}
+    #   text splitlines {}              -> {}
     #
     proc splitlines {text} {
         set lines [split $text \n]
