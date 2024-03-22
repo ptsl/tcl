@@ -30,13 +30,19 @@ proc splitlines {text} {
 }
 
 #
-# Return 1 if the string starts with the given prefix; otherwise, return 0.
+# Return 1 if string starts with the prefix, otherwise return 0.
+#
+# Use the -nocase option for case-insensitive matching.
 #
 # Usage:
 #
-#   startswith abcdefgh abcd
+#   startswith abcd abcdefgh
+#   startswith aBcD AbCdEfGh -nocase
 #
-proc startswith {text prefix} {
-    set length [string length $prefix]
-    return [string equal -length $length $text $prefix]
+proc startswith {prefix string args} {
+    if {"-nocase" in $args} {
+        return [string match -nocase $prefix* $string]
+    } else {
+        return [string match $prefix* $string]
+    }
 }

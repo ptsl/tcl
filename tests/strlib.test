@@ -43,37 +43,36 @@ test splitlines-4.1 {empty string} {
     splitlines {}
 } {}
 
-
 test startswith-1.1 {shorter prefix, eight letters} {
-    startswith abcdefgh abcd
+    startswith abcd abcdefgh
 } 1
 
 test startswith-1.2 {shorter prefix, two letters} {
-    startswith ab a
+    startswith a ab
 } 1
 
 test startswith-1.3 {empty prefix} {
-    startswith a {}
+    startswith {} a
 } 1
 
 test startswith-2.1 {non-matching shorter prefix, eight letters} {
-    startswith abcdefgh ijkl
+    startswith abcd efghijkl
 } 0
 
 test startswith-2.2 {non-matching shorter prefix, two letters} {
-    startswith ab c
+    startswith a bc
 } 0
 
-test startswith-3.1 {longer prefix, eight letters} {
-    startswith abcd abcdefgh
+test startswith-3.1 {longer prefix, four letters} {
+    startswith abcdefgh abcd
 } 0
 
-test startswith-3.2 {longer prefix, two letters} {
-    startswith a ab
+test startswith-3.2 {longer prefix, one letter} {
+    startswith ab a
 } 0
 
 test startswith-3.3 {longer prefix, empty string} {
-    startswith {} a
+    startswith a {}
 } 0
 
 test startswith-4.1 {equal strings, eight letters} {
@@ -103,6 +102,46 @@ test startswith-5.2 {different strings of the same length, two letters} {
 test startswith-5.3 {different strings of the same length, one letter} {
     startswith a b
 } 0
+
+test startswith-6.1 {shorter prefix, wrong case, eight letters} {
+    startswith aBcD AbCdEfGh
+} 0
+
+test startswith-6.2 {shorter prefix, wrong case, two letters} {
+    startswith a Ab
+} 0
+
+test startswith-7.1 {shorter prefix, wrong case, -nocase, eight letters} {
+    startswith aBcD AbCdEfGh -nocase
+} 1
+
+test startswith-7.2 {shorter prefix, wrong case, -nocase, two letters} {
+    startswith a Ab -nocase
+} 1
+
+test startswith-8.1 {equal strings, different case, eight letters} {
+    startswith aBcDeFgH AbCdEfGh
+} 0
+
+test startswith-8.2 {equal strings, different case, two letters} {
+    startswith aB Ab
+} 0
+
+test startswith-8.3 {equal strings, different case, one letter} {
+    startswith a A
+} 0
+
+test startswith-9.1 {equal strings, different case, -nocase, eight letters} {
+    startswith aBcDeFgH AbCdEfGh -nocase
+} 1
+
+test startswith-9.2 {equal strings, different case, -nocase, two letters} {
+    startswith aB Ab -nocase
+} 1
+
+test startswith-9.3 {equal strings, different case, -nocase one letter} {
+    startswith a A -nocase
+} 1
 
 cleanupTests
 
