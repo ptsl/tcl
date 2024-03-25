@@ -6,9 +6,9 @@
 # element name is the name of a command and the value is
 # a script that loads the command.
 
-set auto_index(decr) [list source [file join $dir decr.tcl]]
 set auto_index(getenv) [list source [file join $dir getenv.tcl]]
 set auto_index(lprint) [list source [file join $dir lutils.tcl]]
+set auto_index(decr) [list source [file join $dir math.tcl]]
 set auto_index(named) [list source [file join $dir named.tcl]]
 set auto_index(showerror) [list source [file join $dir showerror.tcl]]
 set auto_index(slurp) [list source [file join $dir slurp.tcl]]
