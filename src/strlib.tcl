@@ -1,6 +1,24 @@
 #!/usr/bin/tclsh
 
 #
+# Return 1 if string ends with the suffix, otherwise return 0.
+#
+# Use the -nocase option for case-insensitive matching.
+#
+# Usage:
+#
+#   endswith efgh abcdefgh
+#   endswith eFgH AbCdEfGh -nocase
+#
+proc endswith {suffix string args} {
+    if {"-nocase" in $args} {
+        return [string match -nocase *$suffix $string]
+    } else {
+        return [string match *$suffix $string]
+    }
+}
+
+#
 # Split text into lines.
 #
 # If the text ends with '\n', the last element is removed from the result to ensure
