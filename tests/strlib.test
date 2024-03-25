@@ -3,6 +3,106 @@
 package require tcltest
 namespace import ::tcltest::*
 
+test endswith-1.1 {shorter suffix, eight letters} {
+    endswith efgh abcdefgh
+} 1
+
+test endswith-1.2 {shorter suffix, two letters} {
+    endswith b ab
+} 1
+
+test endswith-1.3 {empty suffix} {
+    endswith {} a
+} 1
+
+test endswith-2.1 {non-matching shorter suffix, eight letters} {
+    endswith abcd efghijkl
+} 0
+
+test endswith-2.2 {non-matching shorter suffix, two letters} {
+    endswith a bc
+} 0
+
+test endswith-3.1 {longer suffix, eight letters} {
+    endswith abcdefgh efgh
+} 0
+
+test endswith-3.2 {longer suffix, one letter} {
+    endswith ab b
+} 0
+
+test endswith-3.3 {longer suffix, empty string} {
+    endswith a {}
+} 0
+
+test endswith-4.1 {equal strings, eight letters} {
+    endswith abcdefgh abcdefgh
+} 1
+
+test endswith-4.2 {equal strings, two letters} {
+    endswith ab ab
+} 1
+
+test endswith-4.3 {equal strings, one letter} {
+    endswith a a
+} 1
+
+test endswith-4.4 {two empty strings} {
+    endswith {} {}
+} 1
+
+test endswith-5.1 {different strings of the same length, eight letters} {
+    endswith abcdefgh ijklmnop
+} 0
+
+test endswith-5.2 {different strings of the same length, two letters} {
+    endswith ab cd
+} 0
+
+test endswith-5.3 {different strings of the same length, one letter} {
+    endswith a b
+} 0
+
+test endswith-6.1 {shorter suffix, wrong case, eight letters} {
+    endswith eFgH AbCdEfGh
+} 0
+
+test endswith-6.2 {shorter suffix, wrong case, two letters} {
+    endswith B Ab
+} 0
+
+test endswith-7.1 {shorter suffix, wrong case, -nocase, eight letters} {
+    endswith eFgH AbCdEfGh -nocase
+} 1
+
+test endswith-7.2 {shorter suffix, wrong case, -nocase, two letters} {
+    endswith B Ab -nocase
+} 1
+
+test endswith-8.1 {equal strings, different case, eight letters} {
+    endswith aBcDeFgH AbCdEfGh
+} 0
+
+test endswith-8.2 {equal strings, different case, two letters} {
+    endswith aB Ab
+} 0
+
+test endswith-8.3 {equal strings, different case, one letter} {
+    endswith a A
+} 0
+
+test endswith-9.1 {equal strings, different case, -nocase, eight letters} {
+    endswith aBcDeFgH AbCdEfGh -nocase
+} 1
+
+test endswith-9.2 {equal strings, different case, -nocase, two letters} {
+    endswith aB Ab -nocase
+} 1
+
+test endswith-9.3 {equal strings, different case, -nocase one letter} {
+    endswith a A -nocase
+} 1
+
 test splitlines-1.1 {three complete lines} {
     splitlines aaa\nbbb\nccc\n
 } {aaa bbb ccc}
