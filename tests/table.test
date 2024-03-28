@@ -1,0 +1,73 @@
+#!/usr/bin/tclsh
+
+package require tcltest
+namespace import ::tcltest::*
+
+test row-1.1 {first row} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table 0
+} {1 11 111}
+
+test row-1.2 {second row} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table 1
+} {2 22 222}
+
+test row-1.3 {third row} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table 2
+} {3 33 333}
+
+test row-2.1 {empty row at the beginning} {
+    set table {{} {2 22 222} {3 33 333}}
+    table row $table 0
+} {}
+
+test row-2.2 {empty row in the middle} {
+    set table {{1 11 111} {} {3 33 333}}
+    table row $table 1
+} {}
+
+test row-2.3 {empty row at the end} {
+    set table {{1 11 111} {2 22 222} {}}
+    table row $table 2
+} {}
+
+test row-3.1 {out of range at the beginning} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table -1
+} {}
+
+test row-3.2 {out of range at the end} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table 3
+} {}
+
+test row-4.1 {'end' index} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table end
+} {3 33 333}
+
+test row-4.2 {'end-2' index} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table end-2
+} {1 11 111}
+
+test row-4.3 {index with arithmetic expression} {
+    set table {{1 11 111} {2 22 222} {3 33 333}}
+    table row $table 5-4
+} {2 22 222}
+
+test row-5.1 {empty row} {
+    set table {{}}
+    table row $table 0
+} {}
+
+test row-5.2 {empty table} {
+    set table {}
+    table row $table 0
+} {}
+
+cleanupTests
+
+# vim: ft=tcl
