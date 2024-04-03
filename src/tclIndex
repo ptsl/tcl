@@ -7,6 +7,7 @@
 # a script that loads the command.
 
 set auto_index(getenv) [list source [file join $dir getenv.tcl]]
+set auto_index(print) [list source [file join $dir io.tcl]]
 set auto_index(lprint) [list source [file join $dir lutils.tcl]]
 set auto_index(decr) [list source [file join $dir math.tcl]]
 set auto_index(named) [list source [file join $dir named.tcl]]
