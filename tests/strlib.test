@@ -4,243 +4,243 @@ package require tcltest
 namespace import ::tcltest::*
 
 test endswith-1.1 {shorter suffix, eight letters} {
-    endswith efgh abcdefgh
+    strlib endswith efgh abcdefgh
 } 1
 
 test endswith-1.2 {shorter suffix, two letters} {
-    endswith b ab
+    strlib endswith b ab
 } 1
 
 test endswith-1.3 {empty suffix} {
-    endswith {} a
+    strlib endswith {} a
 } 1
 
 test endswith-2.1 {non-matching shorter suffix, eight letters} {
-    endswith abcd efghijkl
+    strlib endswith abcd efghijkl
 } 0
 
 test endswith-2.2 {non-matching shorter suffix, two letters} {
-    endswith a bc
+    strlib endswith a bc
 } 0
 
 test endswith-3.1 {longer suffix, eight letters} {
-    endswith abcdefgh efgh
+    strlib endswith abcdefgh efgh
 } 0
 
 test endswith-3.2 {longer suffix, one letter} {
-    endswith ab b
+    strlib endswith ab b
 } 0
 
 test endswith-3.3 {longer suffix, empty string} {
-    endswith a {}
+    strlib endswith a {}
 } 0
 
 test endswith-4.1 {equal strings, eight letters} {
-    endswith abcdefgh abcdefgh
+    strlib endswith abcdefgh abcdefgh
 } 1
 
 test endswith-4.2 {equal strings, two letters} {
-    endswith ab ab
+    strlib endswith ab ab
 } 1
 
 test endswith-4.3 {equal strings, one letter} {
-    endswith a a
+    strlib endswith a a
 } 1
 
 test endswith-4.4 {two empty strings} {
-    endswith {} {}
+    strlib endswith {} {}
 } 1
 
 test endswith-5.1 {different strings of the same length, eight letters} {
-    endswith abcdefgh ijklmnop
+    strlib endswith abcdefgh ijklmnop
 } 0
 
 test endswith-5.2 {different strings of the same length, two letters} {
-    endswith ab cd
+    strlib endswith ab cd
 } 0
 
 test endswith-5.3 {different strings of the same length, one letter} {
-    endswith a b
+    strlib endswith a b
 } 0
 
 test endswith-6.1 {shorter suffix, wrong case, eight letters} {
-    endswith eFgH AbCdEfGh
+    strlib endswith eFgH AbCdEfGh
 } 0
 
 test endswith-6.2 {shorter suffix, wrong case, two letters} {
-    endswith B Ab
+    strlib endswith B Ab
 } 0
 
 test endswith-7.1 {shorter suffix, wrong case, -nocase, eight letters} {
-    endswith eFgH AbCdEfGh -nocase
+    strlib endswith eFgH AbCdEfGh -nocase
 } 1
 
 test endswith-7.2 {shorter suffix, wrong case, -nocase, two letters} {
-    endswith B Ab -nocase
+    strlib endswith B Ab -nocase
 } 1
 
 test endswith-8.1 {equal strings, different case, eight letters} {
-    endswith aBcDeFgH AbCdEfGh
+    strlib endswith aBcDeFgH AbCdEfGh
 } 0
 
 test endswith-8.2 {equal strings, different case, two letters} {
-    endswith aB Ab
+    strlib endswith aB Ab
 } 0
 
 test endswith-8.3 {equal strings, different case, one letter} {
-    endswith a A
+    strlib endswith a A
 } 0
 
 test endswith-9.1 {equal strings, different case, -nocase, eight letters} {
-    endswith aBcDeFgH AbCdEfGh -nocase
+    strlib endswith aBcDeFgH AbCdEfGh -nocase
 } 1
 
 test endswith-9.2 {equal strings, different case, -nocase, two letters} {
-    endswith aB Ab -nocase
+    strlib endswith aB Ab -nocase
 } 1
 
 test endswith-9.3 {equal strings, different case, -nocase one letter} {
-    endswith a A -nocase
+    strlib endswith a A -nocase
 } 1
 
 test splitlines-1.1 {three complete lines} {
-    splitlines aaa\nbbb\nccc\n
+    strlib splitlines aaa\nbbb\nccc\n
 } {aaa bbb ccc}
 
 test splitlines-1.2 {two complete lines} {
-    splitlines aaa\nbbb\n
+    strlib splitlines aaa\nbbb\n
 } {aaa bbb}
 
 test splitlines-1.3 {one complete line} {
-    splitlines aaa\n
+    strlib splitlines aaa\n
 } {aaa}
 
 test splitlines-2.1 {two complete lines, one incomplete} {
-    splitlines aaa\nbbb\nccc
+    strlib splitlines aaa\nbbb\nccc
 } {aaa bbb ccc}
 
 test splitlines-2.2 {one complete line, one incomplete} {
-    splitlines aaa\nbbb
+    strlib splitlines aaa\nbbb
 } {aaa bbb}
 
 test splitlines-2.3 {one icomplete line} {
-    splitlines aaa
+    strlib splitlines aaa
 } {aaa}
 
 test splitlines-3.1 {three empty lines} {
-    splitlines \n\n\n
+    strlib splitlines \n\n\n
 } {{} {} {}}
 
 test splitlines-3.2 {two empty lines} {
-    splitlines \n\n
+    strlib splitlines \n\n
 } {{} {}}
 
 test splitlines-3.3 {one empty line} {
-    splitlines \n
+    strlib splitlines \n
 } {{}}
 
 test splitlines-4.1 {empty string} {
-    splitlines {}
+    strlib splitlines {}
 } {}
 
 test startswith-1.1 {shorter prefix, eight letters} {
-    startswith abcd abcdefgh
+    strlib startswith abcd abcdefgh
 } 1
 
 test startswith-1.2 {shorter prefix, two letters} {
-    startswith a ab
+    strlib startswith a ab
 } 1
 
 test startswith-1.3 {empty prefix} {
-    startswith {} a
+    strlib startswith {} a
 } 1
 
 test startswith-2.1 {non-matching shorter prefix, eight letters} {
-    startswith abcd efghijkl
+    strlib startswith abcd efghijkl
 } 0
 
 test startswith-2.2 {non-matching shorter prefix, two letters} {
-    startswith a bc
+    strlib startswith a bc
 } 0
 
 test startswith-3.1 {longer prefix, four letters} {
-    startswith abcdefgh abcd
+    strlib startswith abcdefgh abcd
 } 0
 
 test startswith-3.2 {longer prefix, one letter} {
-    startswith ab a
+    strlib startswith ab a
 } 0
 
 test startswith-3.3 {longer prefix, empty string} {
-    startswith a {}
+    strlib startswith a {}
 } 0
 
 test startswith-4.1 {equal strings, eight letters} {
-    startswith abcdefgh abcdefgh
+    strlib startswith abcdefgh abcdefgh
 } 1
 
 test startswith-4.2 {equal strings, two letters} {
-    startswith ab ab
+    strlib startswith ab ab
 } 1
 
 test startswith-4.3 {equal strings, one letter} {
-    startswith a a
+    strlib startswith a a
 } 1
 
 test startswith-4.4 {two empty strings} {
-    startswith {} {}
+    strlib startswith {} {}
 } 1
 
 test startswith-5.1 {different strings of the same length, eight letters} {
-    startswith abcdefgh ijklmnop
+    strlib startswith abcdefgh ijklmnop
 } 0
 
 test startswith-5.2 {different strings of the same length, two letters} {
-    startswith ab cd
+    strlib startswith ab cd
 } 0
 
 test startswith-5.3 {different strings of the same length, one letter} {
-    startswith a b
+    strlib startswith a b
 } 0
 
 test startswith-6.1 {shorter prefix, wrong case, eight letters} {
-    startswith aBcD AbCdEfGh
+    strlib startswith aBcD AbCdEfGh
 } 0
 
 test startswith-6.2 {shorter prefix, wrong case, two letters} {
-    startswith a Ab
+    strlib startswith a Ab
 } 0
 
 test startswith-7.1 {shorter prefix, wrong case, -nocase, eight letters} {
-    startswith aBcD AbCdEfGh -nocase
+    strlib startswith aBcD AbCdEfGh -nocase
 } 1
 
 test startswith-7.2 {shorter prefix, wrong case, -nocase, two letters} {
-    startswith a Ab -nocase
+    strlib startswith a Ab -nocase
 } 1
 
 test startswith-8.1 {equal strings, different case, eight letters} {
-    startswith aBcDeFgH AbCdEfGh
+    strlib startswith aBcDeFgH AbCdEfGh
 } 0
 
 test startswith-8.2 {equal strings, different case, two letters} {
-    startswith aB Ab
+    strlib startswith aB Ab
 } 0
 
 test startswith-8.3 {equal strings, different case, one letter} {
-    startswith a A
+    strlib startswith a A
 } 0
 
 test startswith-9.1 {equal strings, different case, -nocase, eight letters} {
-    startswith aBcDeFgH AbCdEfGh -nocase
+    strlib startswith aBcDeFgH AbCdEfGh -nocase
 } 1
 
 test startswith-9.2 {equal strings, different case, -nocase, two letters} {
-    startswith aB Ab -nocase
+    strlib startswith aB Ab -nocase
 } 1
 
 test startswith-9.3 {equal strings, different case, -nocase one letter} {
-    startswith a A -nocase
+    strlib startswith a A -nocase
 } 1
 
 cleanupTests
